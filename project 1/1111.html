@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>用户登录和注册</title>
+  <style>
+    /* 添加一些基本样式 */
+    body {
+      font-family: Arial, sans-serif;
+      margin: 0;
+      padding: 20px;
+    }
+
+    h1 {
+      text-align: center;
+    }
+
+    form {
+      max-width: 300px;
+      margin: 0 auto;
+    }
+
+    input[type="text"],
+    input[type="password"],
+    input[type="submit"] {
+      width: 100%;
+      padding: 10px;
+      margin-bottom: 10px;
+    }
+
+    input[type="submit"] {
+      background-color: #4CAF50;
+      color: white;
+      cursor: pointer;
+    }
+
+    .message {
+      text-align: center;
+      margin-bottom: 10px;
+    }
+
+    .message.error {
+      color: red;
+    }
+  </style>
+</head>
+<body>
+  <h1>用户登录和注册</h1>
+
+  <!-- 登录表单 -->
+  <form id="loginForm">
+    <h2>登录</h2>
+    <input type="text" id="loginUsername" placeholder="用户名" required>
+    <input type="password" id="loginPassword" placeholder="密码" required>
+    <input type="submit" value="登录">
+    <div class="message" id="loginMessage"></div>
+  </form>
+
+  <!-- 注册表单 -->
+  <form id="registerForm">
+    <h2>注册</h2>
+    <input type="text" id="registerUsername" placeholder="用户名" required>
+    <input type="password" id="registerPassword" placeholder="密码" required>
+    <input type="submit" value="注册">
+    <div class="message" id="registerMessage"></div>
+  </form>
+
+  <script>
+    // 登录表单提交事件处理程序
+    document.getElementById("loginForm").addEventListener("submit", function(event) {
+      event.preventDefault(); // 阻止表单提交的默认行为
+
+      // 获取输入的用户名和密码
+      var username = document.getElementById("loginUsername").value;
+      var password = document.getElementById("loginPassword").value;
+
+      // 在这里添加您的登录逻辑
+      // 可以使用AJAX发送登录请求到服务器端，并根据服务器的响应进行相应处理
+
+      // 这里只是一个简单的示例
+      if (username === "admin" && password === "password") {
+        showMessage("登录成功", "loginMessage");
+      } else {
+        showMessage("用户名或密码错误", "loginMessage", true);
+      }
+    });
+
+    // 注册表单提交事件处理程序
+    document.getElementById("registerForm").addEventListener("submit", function(event) {
+      event.preventDefault(); // 阻止表单提交的默认行为
+
+      // 获取输入的用户名和密码
+      var username = document.getElementById("registerUsername").value;
+      var password = document.getElementById("registerPassword").value;
+
+      // 在这里添加您的注册逻辑
+      // 可以使用AJAX发送注册请求到服务器端，并根据服务器的响应进行相应处理
+
+      // 这里只是一个简单的示例
+      showMessage("注册成功", "registerMessage");
+    });
+
+    // 显示消息的辅助函数
+    function showMessage(message, elementId, isError = false) {
+      var messageElement = document.getElementById(elementId);
+      messageElement.textContent = message;
+
+      if (isError) {
+        messageElement.classList.add("error");
+      } else {
+        messageElement.classList.remove("error");
+      }
+    }
+  </script>
+</body>
+</html>
